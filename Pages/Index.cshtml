@@ -1,0 +1,124 @@
+﻿@page
+
+@model IndexModel
+
+<div class="row">
+
+  <h1 class="mb-4 display-6 fw-light text-center text-success">Streamed File upload with Progress bar</h1>
+
+</div>
+
+<div class="row">
+
+  <p class="lead">Upload a file(less than 1GB)</p>
+
+  <small>file must be less than 1GB (see program.cs for increasing this limit)</small>
+
+  <div class="lead">
+
+    <form id="main_form" enctype="multipart/form-data">
+
+      <input name="file" class="form-control" required type="file" />
+
+      <input class="my-3" type="submit" value="Upload" />
+
+      <output class="d-block text-success" form="main_form" name="result" for="videoFile"></output>
+
+    </form>
+
+    <div class="progress mt-3" hidden id="progress">
+
+      <div class="progress-bar text-bg-success">0%</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+@section Scripts {
+
+  <script>
+
+    window.onload = () => {
+
+      const main_form = document.getElementById("main_form");
+
+      const progress = document.getElementById("progress");
+
+      const progress_bar = progress.firstElementChild;
+
+      const result_tag = main_form.elements["result"];
+
+      function getCookie(name) {
+
+          var value = "; " + document.cookie;
+
+          var parts = value.split("; " + name + "=");
+
+          if (parts.length == 2) return parts.pop().split(";").shift();
+
+        };
+
+      main_form.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        const formData = new FormData(main_form);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '/Index', true);
+
+            xhr.setRequestHeader("RequestVerificationToken", getCookie('RequestVerificationToken'));
+
+            xhr.upload.onprogress = function (event) {
+
+                if (event.lengthComputable) {
+
+                    progress_bar.style.width = progress_bar.textContent = (Math.round((event.loaded / event.total) * 100) + '%');
+                }
+            };
+
+            xhr.onload = function () {
+
+              main_form.reset();
+
+                if (xhr.status === 200) {
+
+                    console.log('Upload complete!');
+
+                    result_tag.textContent = `Fileupload success: ${xhr.responseText}`
+
+                } else {
+
+                    console.error('Upload failed:', xhr.statusText);
+
+                    result_tag.textContent = `Error: ${xhr.status} ${xhr.statusText}, ${xhr.responseText}`;
+                }
+
+                progress.hidden = true;
+            };
+
+            xhr.onerror = function () {
+
+               progress.hidden = true;
+
+                console.error('Network error during upload.');
+
+                result_tag.textContent = 'Network error during upload. Refresh and retry.';
+            };
+
+            progress.hidden = false;
+
+            xhr.send(formData);
+
+        });
+
+    }
+
+  </script>
+
+}
+
+
