@@ -9,7 +9,7 @@ This project shows how to use javascript to show a progress bar for uploads to a
 ## Video Explanation
 Following is the video explanation of the source code. Click below to open youtube video.
 
-[![Streamed-file-upload](https://img.youtube.com/vi/2i_m4QlZ3cI/0.jpg)](https://www.youtube.com/watch?v=2i_m4QlZ3cI)
+[![Streamed-file-upload](https://img.youtube.com/vi/1LTG3_zjoqo/0.jpg)](https://www.youtube.com/watch?v=1LTG3_zjoqo)
 
 ## See the Blog Page for details
 
