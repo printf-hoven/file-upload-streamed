@@ -1,6 +1,8 @@
 # file-upload-streamed
 Uploading large files with Streaming, Anti-forgery token and Progress bar with Javascript. 
 
+Crux: Stream the bytes from the request body directly to the final location of your choice, bypassing the intermediate storage and IFormFile.
+
 For more explanation, and blog page see this - [Uploading large files with Streaming, Anti-forgery token](https://hoven.in/aspnet-core/streamed-file-upload-with-progressbar.html)
 
 ## Quick Info
