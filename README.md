@@ -1,5 +1,7 @@
 # file-upload-streamed
-Uploading large files with Streaming, Anti-forgery token and Progress bar (page is on hoven.in)
+Uploading large files with Streaming, Anti-forgery token and Progress bar with Javascript. 
+
+For more explanation, and blog page see this - [Uploading large files with Streaming, Anti-forgery token](https://hoven.in/aspnet-core/streamed-file-upload-with-progressbar.html)
 
 ## Quick Info
 This project shows how to use javascript to show a progress bar for uploads to an ASPNET Core server. The progress bar works correctly only if the bytes are directly streamed to the final destination of the file. But that part requires adding and removing a few filters. See the video for explanation of the various parts of the project.
